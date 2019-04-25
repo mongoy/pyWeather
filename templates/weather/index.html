@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <title>Погодное приложение</title>
+</head>
+<body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h4 class="my-0 mr-md-auto font-weight-bolt">ГКУ</h4>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Главная</a>
+        <a class="p-2 text-dark" href="#">Информация</a>
+      </nav>
+      <a class="btn btn-outline-primary" href="#">Документация</a>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <h4>Погода в вашем городе</h4>
+            <div class="col-lg offset-1">
+                <form action="">
+                    <label for="city">Город:</label>
+                    <input type="text" id="city" class="form-control" name="city" placeholder="Введите город">
+                    <input type="submit" class="mt-2 btn btn-danger" name="send" value="Узнать" >
+                </form>
+            </div>
+            <div class="col-lg offset-1">
+                <h5>Погодное приложение</h5>
+                <div class="alert alert-light">
+                    <b>Город: </b>{{ info.city }}<br>
+                    <b>Температура: </b>{{ info.temp }}<sub>o</sub><br>
+                    <img src="https://openweathermap.org/img/w/{{ info.icon }}" alt="Иконка" class="img-tumbnail">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="openweathermap-widget-11"></div>
+    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+    <script>
+        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+        window.myWidgetParam.push({id: 11,cityid: '2025339',appid: 'b4ade3e9f47c260f170c8ee12da73bb0',units: 'metric',containerid: 'openweathermap-widget-11',  });
+        (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(script, s);  })();
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
