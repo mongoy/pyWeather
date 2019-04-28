@@ -33,11 +33,17 @@
                 </form>
             </div>
             <div class="col-lg offset-1">
-                <h5>Погодное приложение</h5>
-                <div class="alert alert-light">
-                    <b>Город: </b>{{ info.city }}<br>
-                    <b>Температура: </b>{{ info.temp }}<sub>o</sub><br>
-                    <img src="https://openweathermap.org/img/w/{{ info.icon }}" alt="Иконка" class="img-tumbnail">
+                <h5>Информация:</h5>
+                <div class="alert alert-info">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <b>Город: </b>{{ info.city }} ( {{ info.dt }} ) <br>
+                            <b>Температура: </b>{{ info.temp }}<sup> o</sup>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 offcet-1">
+                        <img src="https://openweathermap.org/img/w/{{ info.icon }}.png" alt="Иконка" class="img-tumbnail"> {{ info.description }}<br>
+                    </div>
                 </div>
             </div>
 
