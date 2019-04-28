@@ -34,6 +34,8 @@
             </div>
             <div class="col-lg offset-1">
                 <h5>Информация:</h5>
+
+                {% for info in all_info %}
                 <div class="alert alert-info">
                     <div class="row">
                         <div class="col-lg-12">
@@ -45,20 +47,12 @@
                         <img src="https://openweathermap.org/img/w/{{ info.icon }}.png" alt="Иконка" class="img-tumbnail"> {{ info.description }}<br>
                     </div>
                 </div>
+                {% endfor %}
             </div>
 
         </div>
     </div>
 
-    <div id="openweathermap-widget-11"></div>
-    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
-    <script>
-        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
-        window.myWidgetParam.push({id: 11,cityid: '2025339',appid: 'b4ade3e9f47c260f170c8ee12da73bb0',units: 'metric',containerid: 'openweathermap-widget-11',  });
-        (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(script, s);  })();
-    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
