@@ -1,11 +1,22 @@
 import time
+#import pytz
 import requests
+from django.conf import settings
 from django.shortcuts import render
+from datetime import datetime
+from django.utils.timezone import pytz, now
 
 from weather.models import City
 
 
 def index(request):
+    #tz_zk = pytz.timezone('Asia/Yakutsk')
+    #user_timezone = pytz.timezone(user.timezone or settings.TIME_ZONE)
+    user_timezone = pytz.timezone(settings.TIME_ZONE)
+    now().astimezone(user_timezone)
+
+    print(now().astimezone(user_timezone))
+
     API_ID = 'b4ade3e9f47c260f170c8ee12da73bb0'  # ключ с сайта https://openweathermap.org
     #city = 'Чита'
     cityes = City.objects.all()#выбираем все объекты из базы
@@ -19,7 +30,7 @@ def index(request):
             # выделяем необходимую информацию из url
             city_info = {
                 'city': city.name, #название города
-                'dt': time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime(res["dt"])),  # дата и время
+                'dt': time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime(res["dt"]).tm_zone(8)),  # дата и время
                 'temp': res["main"]["temp"], #температура
                 'icon': res["weather"][0]["icon"],#код иконки погоды
                 'description': res['weather'][0]['description']# состояние погоды
