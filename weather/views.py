@@ -5,7 +5,7 @@ from django.conf import settings
 from django.shortcuts import render
 from datetime import datetime
 from django.utils.timezone import pytz, now
-
+from weather.forms import City
 from weather.models import City
 
 
