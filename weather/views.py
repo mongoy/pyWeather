@@ -30,17 +30,17 @@ def index(request):
             # выделяем необходимую информацию из url
             city_info = {
                 'city': city.name, #название города
-                'dt': time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime(res["dt"]).tm_zone(8)),  # дата и время
+                'dt': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(res["dt"])),  # дата и время
                 'temp': res["main"]["temp"], #температура
                 'icon': res["weather"][0]["icon"],#код иконки погоды
                 'description': res['weather'][0]['description']# состояние погоды
                  }
-            #print("city :", city_info)
+            print("city :", city_info)
         except Exception as e:
              print("Exception (find):", e)
 
         all_cityes.append(city_info)
-        print(all_cityes[0])
+        #print(all_cityes[0])
 
     # контекст для передачи в шаблон
     context = {'all_info': all_cityes}
