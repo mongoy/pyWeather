@@ -5,22 +5,21 @@ from django.conf import settings
 from django.shortcuts import render
 from datetime import datetime
 from django.utils.timezone import pytz, now
-from weather.forms import City
+from weather.forms import CityForm
 from weather.models import City
 
 
 def index(request):
-    #tz_zk = pytz.timezone('Asia/Yakutsk')
-    #user_timezone = pytz.timezone(user.timezone or settings.TIME_ZONE)
-    user_timezone = pytz.timezone(settings.TIME_ZONE)
-    now().astimezone(user_timezone)
-
-    print(now().astimezone(user_timezone))
-
     API_ID = 'b4ade3e9f47c260f170c8ee12da73bb0'  # ключ с сайта https://openweathermap.org
-    #city = 'Чита'
-    cityes = City.objects.all()#выбираем все объекты из базы
     url = 'https://api.openweathermap.org/data/2.5/weather?q={},ru&units=metric&lang=ru&APPID=' + API_ID
+
+    if(request.method == 'POST'):
+        form = CityForm(request.POST)#данные от пользователя
+        form.save()#сохранить данные в БД
+
+    form = CityForm()# очистка формы
+
+    cityes = City.objects.all()#выбираем все объекты из базы
     all_cityes = []
 
     for city in cityes:
@@ -43,7 +42,7 @@ def index(request):
         #print(all_cityes[0])
 
     # контекст для передачи в шаблон
-    context = {'all_info': all_cityes}
+    context = {'all_info': all_cityes, 'form': form}
     # #print(res.text)
 
     return render(request, 'weather/index.html', context)
